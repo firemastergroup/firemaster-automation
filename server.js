@@ -102,7 +102,6 @@ app.get('/logs', auth, (req, res) => { try { const d = new Date().toISOString().
 require('node-cron').schedule('0 * * * *', () => runWorkflow('health-check', 'scheduled'));
 require('node-cron').schedule('*/15 21-23,0-9 * * *', () => runWorkflow('check-new-emails', 'scheduled', { emails: [] }));
 
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   log('info', 'server', `Fire Master Automation Server started on port ${PORT}`);
   setTimeout(() => runWorkflow('health-check', 'startup'), 3000);
